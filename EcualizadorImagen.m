@@ -65,15 +65,15 @@ preview(video)
 while c<=100
 imaggen=getsnapshot(video);
 s=ycbcr2rgb(imaggen);
-
+s=fliplr(s);
 
 
 gris=rgb2gray(s);
 binari=im2bw(gris,0.5);
 binari=1-binari;
+[L Ne]=bwlabel(binari);
 axes(handles.axes4)
 imshow(binari);
-
 c=c+1;
 end
 % UIWAIT makes EcualizadorImagen wait for user response (see UIRESUME)
