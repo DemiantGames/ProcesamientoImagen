@@ -70,10 +70,23 @@ s=fliplr(s);
 
 gris=rgb2gray(s);
 binari=im2bw(gris,0.5);
-binari=1-binari;
+%binari=1-binari;
+binari=imfill(binari,'holes');
 [L Ne]=bwlabel(binari);
+prop=regionprops(L,'Area','BoundingBox');
 axes(handles.axes4)
-imshow(binari);
+imshow(binari);hold on
+
+for n=1:size(prop,1) %For 1 to Total number of coins
+    cent=prop(n).BoundingBox;
+    X=cent(1);Y=cent(2);
+    
+  
+    if prop(n).Area>10000
+        text(X,Y,'5 C','Color','red')
+    end
+end
+
 c=c+1;
 end
 % UIWAIT makes EcualizadorImagen wait for user response (see UIRESUME)
