@@ -77,7 +77,7 @@ binari=imfill(binari,'holes');
 [L Ne]=bwlabel(binari);
 prop=regionprops(L,'Area','BoundingBox');
 axes(handles.axes4)
-imshow(binari);
+imshow(s);
 
 for n=1:size(prop,1) %For 1 to Total number of coins
     cent=prop(n).BoundingBox;
@@ -88,7 +88,22 @@ for n=1:size(prop,1) %For 1 to Total number of coins
         text(X,Y,'ø','Color','red')
     end
 end
+%%cambios sin probrar
+if Y>=120 && Y<=360
+valorSlider=(Y-120)/110;
 
+    if X<=128
+    set(handles.slider2,'Value',1);
+    elseif X>128 && X<=256
+    set(handles.slider3,'Value',1);
+    elseif X>256 && X<=384
+    set(handles.slider4,'Value',1);
+    elseif X>384 && X<=512
+    set(handles.slider5,'Value',1);
+    elseif X>512 
+    set(handles.slider6,'Value',1);
+    end
+end
 %=======
 
 %>>>>>>> Stashed changes
