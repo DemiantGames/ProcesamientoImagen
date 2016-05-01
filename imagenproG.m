@@ -6,7 +6,8 @@ c=1;
 imaggen=getsnapshot(video);
 s=ycbcr2rgb(imaggen);
 gris=rgb2gray(s);
-binari=im2bw(gris,0.4);
+imshow(gris)
+binari=im2bw(gris,0.02);
 binari=fliplr(binari);
 rellena=imfill(binari,'holes');
 
