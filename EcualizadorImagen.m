@@ -57,11 +57,15 @@ handles.output = hObject;
 
 % Update handles structure
 guidata(hObject, handles);
+global K2 K3 K4 K5 K6
+% find_system('Name','Eq_1');
+% open_system('Eq_1');
+% set_param(gcs,'SimulationCommand','Start');
 
 video=videoinput('macvideo',1,'YCbCr422_1280x720');
 Fuente=getselectedsource(video);
 c=1;
-preview(video)
+%preview(video)
 while c<=1000
 imaggen=getsnapshot(video);
 imaggen=imresize(imaggen,0.5);
@@ -77,7 +81,7 @@ binari=imfill(binari,'holes');
 [L Ne]=bwlabel(binari);
 prop=regionprops(L,'Area','BoundingBox');
 axes(handles.axes4)
-imshow(s);
+imshow(binari);
 
 for n=1:size(prop,1) %For 1 to Total number of coins
     cent=prop(n).BoundingBox;
@@ -89,20 +93,36 @@ for n=1:size(prop,1) %For 1 to Total number of coins
     end
 end
 %%cambios sin probrar
-if Y>=120 && Y<=360
-valorSlider=(Y-120)/110;
+if Y>=0 && Y<=240
+valorSlider=2-(Y/110);
 
     if X<=128
-    set(handles.slider2,'Value',1);
+        valorSlider1=valorSlider;
+    set(handles.slider2,'Value',valorSlider1);
     elseif X>128 && X<=256
-    set(handles.slider3,'Value',1);
+        valorSlider2=valorSlider;
+    set(handles.slider3,'Value',valorSlider2);
     elseif X>256 && X<=384
-    set(handles.slider4,'Value',1);
+        valorSlider3=valorSlider;
+    set(handles.slider4,'Value',valorSlider3);
     elseif X>384 && X<=512
-    set(handles.slider5,'Value',1);
+        valorSlider4=valorSlider;
+    set(handles.slider5,'Value',valorSlider4);
     elseif X>512 
-    set(handles.slider6,'Value',1);
+        valorSlider5=valorSlider;
+    set(handles.slider6,'Value',valorSlider5);
     end
+    K2=get(handles.slider2,'Value')
+    K3=get(handles.slider3,'Value')
+    K4=get(handles.slider4,'Value')
+    K5=get(handles.slider5,'Value')
+    K6=get(handles.slider6,'Value')
+
+    set_param('Eq_1/Gain0','Gain',num2str(K2));
+    set_param('Eq_1/Gain1','Gain',num2str(K3));
+    set_param('Eq_1/Gain2','Gain',num2str(K4));
+    set_param('Eq_1/Gain3','Gain',num2str(K5));
+    set_param('Eq_1/Gain4','Gain',num2str(K6));
 end
 %=======
 
@@ -142,7 +162,9 @@ function slider2_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-
+global K2
+K2=get(hObject,'Value');
+set_param('Eq_1/Gain0','Gain',num2str(K2));
 % --- Executes during object creation, after setting all properties.
 function slider2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to slider2 (see GCBO)
@@ -163,7 +185,9 @@ function slider3_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-
+global K3
+K3=get(hObject,'Value');
+set_param('Eq_1/Gain0','Gain',num2str(K3));
 
 % --- Executes during object creation, after setting all properties.
 function slider3_CreateFcn(hObject, eventdata, handles)
@@ -186,7 +210,9 @@ function slider4_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-
+global K4
+K4=get(hObject,'Value');
+set_param('Eq_1/Gain0','Gain',num2str(K4));
 % --- Executes during object creation, after setting all properties.
 function slider4_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to slider4 (see GCBO)
@@ -208,7 +234,9 @@ function slider5_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-
+global K5
+K5=get(hObject,'Value');
+set_param('Eq_1/Gain0','Gain',num2str(K5));
 % --- Executes during object creation, after setting all properties.
 function slider5_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to slider5 (see GCBO)
@@ -229,7 +257,9 @@ function slider6_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-
+global K6
+K6=get(hObject,'Value');
+set_param('Eq_1/Gain0','Gain',num2str(K6));
 
 % --- Executes during object creation, after setting all properties.
 function slider6_CreateFcn(hObject, eventdata, handles)
