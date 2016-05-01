@@ -58,14 +58,14 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 global K2 K3 K4 K5 K6
-% find_system('Name','Eq_1');
-% open_system('Eq_1');
-% set_param(gcs,'SimulationCommand','Start');
+find_system('Name','Eq_1');
+open_system('Eq_1');
+set_param(gcs,'SimulationCommand','Start')
 
 video=videoinput('macvideo',1,'YCbCr422_1280x720');
 Fuente=getselectedsource(video);
 c=1;
-%preview(video)
+preview(video)
 while c<=1000
 imaggen=getsnapshot(video);
 imaggen=imresize(imaggen,0.5);
@@ -162,9 +162,9 @@ function slider2_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-global K2
-K2=get(hObject,'Value');
-set_param('Eq_1/Gain0','Gain',num2str(K2));
+% global K2
+% K2=get(hObject,'Value');
+% set_param('Eq_1/Gain0','Gain',num2str(K2));
 % --- Executes during object creation, after setting all properties.
 function slider2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to slider2 (see GCBO)
@@ -185,9 +185,9 @@ function slider3_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-global K3
-K3=get(hObject,'Value');
-set_param('Eq_1/Gain0','Gain',num2str(K3));
+% global K3
+% K3=get(hObject,'Value');
+% set_param('Eq_1/Gain0','Gain',num2str(K3));
 
 % --- Executes during object creation, after setting all properties.
 function slider3_CreateFcn(hObject, eventdata, handles)
@@ -210,9 +210,9 @@ function slider4_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
-global K4
-K4=get(hObject,'Value');
-set_param('Eq_1/Gain0','Gain',num2str(K4));
+% global K4
+% K4=get(hObject,'Value');
+% set_param('Eq_1/Gain0','Gain',num2str(K4));
 % --- Executes during object creation, after setting all properties.
 function slider4_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to slider4 (see GCBO)
@@ -257,9 +257,9 @@ function slider6_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-global K6
-K6=get(hObject,'Value');
-set_param('Eq_1/Gain0','Gain',num2str(K6));
+% global K6
+% K6=get(hObject,'Value');
+% set_param('Eq_1/Gain0','Gain',num2str(K6));
 
 % --- Executes during object creation, after setting all properties.
 function slider6_CreateFcn(hObject, eventdata, handles)
