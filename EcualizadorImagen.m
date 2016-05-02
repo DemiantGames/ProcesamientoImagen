@@ -22,7 +22,11 @@ function varargout = EcualizadorImagen(varargin)
 
 % Edit the above text to modify the response to help EcualizadorImagen
 
+<<<<<<< HEAD
 % Last Modified by GUIDE v2.5 01-May-2016 20:10:34
+=======
+% Last Modified by GUIDE v2.5 01-May-2016 21:54:37
+>>>>>>> origin/master
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -61,7 +65,8 @@ global K2 K3 K4 K5 K6
 find_system('Name','Eq_1');
 open_system('Eq_1');
 a=0;
-
+im2=imread('played.png');
+set(handles.repro,'CData',im2);
 video=videoinput('macvideo',1,'YCbCr422_1280x720');
 Fuente=getselectedsource(video);
 c=1;
@@ -79,13 +84,13 @@ binari=im2bw(gris,0.2);
 binari=1-binari;
 binari=imfill(binari,'holes');
 [L Ne]=bwlabel(binari);
-prop=regionprops(L,'Area','BoundingBox');
+prop=regionprops(L,'Area','Extrema');
 axes(handles.axes4)
 imshow(binari);
 
 for n=1:size(prop,1) %For 1 to Total number of coins
-    cent=prop(n).BoundingBox;
-    X=cent(1);Y=cent(2);
+    cent=prop(n).Extrema;
+    X=cent(8,1);Y=cent(8,2);
     
   
     if prop(n).Area>2500
@@ -288,6 +293,7 @@ if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColo
 end
 
 
+<<<<<<< HEAD
 % --- Executes on button press in play.
 function play_Callback(hObject, eventdata, handles)
 % hObject    handle to play (see GCBO)
@@ -306,5 +312,10 @@ function stop_Callback(hObject, eventdata, handles)
 % --- Otherwise, executes on mouse press in 5 pixel border or over play.
 function play_ButtonDownFcn(hObject, eventdata, handles)
 % hObject    handle to play (see GCBO)
+=======
+% --- Executes on button press in repro.
+function repro_Callback(hObject, eventdata, handles)
+% hObject    handle to repro (see GCBO)
+>>>>>>> origin/master
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
