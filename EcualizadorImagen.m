@@ -60,7 +60,7 @@ guidata(hObject, handles);
 global K2 K3 K4 K5 K6
 find_system('Name','Eq_1');
 open_system('Eq_1');
-set_param(gcs,'SimulationCommand','Start')
+a=0;
 
 video=videoinput('macvideo',1,'YCbCr422_1280x720');
 Fuente=getselectedsource(video);
@@ -112,6 +112,9 @@ valorSlider=2-(Y/110);
         valorSlider5=valorSlider;
     set(handles.slider6,'Value',valorSlider5);
     end
+
+end
+%=======
     K2=get(handles.slider2,'Value')
     K3=get(handles.slider3,'Value')
     K4=get(handles.slider4,'Value')
@@ -123,11 +126,13 @@ valorSlider=2-(Y/110);
     set_param('Eq_1/Gain2','Gain',num2str(K4));
     set_param('Eq_1/Gain3','Gain',num2str(K5));
     set_param('Eq_1/Gain4','Gain',num2str(K6));
-end
-%=======
-
 %>>>>>>> Stashed changes
 c=c+1;
+if a==0
+set_param(gcs,'SimulationCommand','Start')
+a=1;
+end
+pause(1/20);
 end
 % UIWAIT makes EcualizadorImagen wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
