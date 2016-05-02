@@ -22,7 +22,7 @@ function varargout = EcualizadorImagen(varargin)
 
 % Edit the above text to modify the response to help EcualizadorImagen
 
-% Last Modified by GUIDE v2.5 30-Apr-2016 18:47:48
+% Last Modified by GUIDE v2.5 01-May-2016 20:10:34
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -112,8 +112,18 @@ valorSlider=2-(Y/110);
         valorSlider5=valorSlider;
     set(handles.slider6,'Value',valorSlider5);
     end
-
+    %%Cambios
+elseif Y>260
+    
+    if X>128 && X<=256
+        set(handles.play,'Value',1);
+    elseif X>384 && X<=512
+        set(handles.stop,'Value',1);
+    end
 end
+
+
+
 %=======
     K2=get(handles.slider2,'Value')
     K3=get(handles.slider3,'Value')
@@ -276,3 +286,25 @@ function slider6_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+
+
+% --- Executes on button press in play.
+function play_Callback(hObject, eventdata, handles)
+% hObject    handle to play (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in stop.
+function stop_Callback(hObject, eventdata, handles)
+% hObject    handle to stop (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- If Enable == 'on', executes on mouse press in 5 pixel border.
+% --- Otherwise, executes on mouse press in 5 pixel border or over play.
+function play_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to play (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
